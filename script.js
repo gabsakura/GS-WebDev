@@ -166,4 +166,23 @@ form.addEventListener('submit', (e) => {
         alert('Formulário enviado com sucesso!');
         form.reset();
     }
-}); 
+});
+
+// Background Color Change
+const themeIcons = document.querySelectorAll('.theme-icon');
+
+themeIcons.forEach(icon => {
+    icon.addEventListener('click', () => {
+        const color = icon.getAttribute('data-color');
+        document.body.style.backgroundColor = color;
+        
+        // Salvar a preferência do usuário
+        localStorage.setItem('backgroundColor', color);
+    });
+});
+
+// Carregar a cor de fundo salva
+const savedColor = localStorage.getItem('backgroundColor');
+if (savedColor) {
+    document.body.style.backgroundColor = savedColor;
+} 
