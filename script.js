@@ -107,4 +107,63 @@ document.getElementById("restart").addEventListener("click", () => {
 });
 
 // Start the quiz when the page loads
-startQuiz(); 
+startQuiz();
+
+// Form Validation
+const form = document.getElementById('contactForm');
+const nameInput = document.getElementById('name');
+const emailInput = document.getElementById('email');
+const messageInput = document.getElementById('message');
+
+const nameError = document.getElementById('nameError');
+const emailError = document.getElementById('emailError');
+const messageError = document.getElementById('messageError');
+
+function validateName() {
+    const name = nameInput.value.trim();
+    if (name.length < 3) {
+        nameError.textContent = 'O nome deve ter pelo menos 3 caracteres';
+        return false;
+    }
+    nameError.textContent = '';
+    return true;
+}
+
+function validateEmail() {
+    const email = emailInput.value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        emailError.textContent = 'Por favor, insira um email válido';
+        return false;
+    }
+    emailError.textContent = '';
+    return true;
+}
+
+function validateMessage() {
+    const message = messageInput.value.trim();
+    if (message.length < 10) {
+        messageError.textContent = 'A mensagem deve ter pelo menos 10 caracteres';
+        return false;
+    }
+    messageError.textContent = '';
+    return true;
+}
+
+nameInput.addEventListener('input', validateName);
+emailInput.addEventListener('input', validateEmail);
+messageInput.addEventListener('input', validateMessage);
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const isNameValid = validateName();
+    const isEmailValid = validateEmail();
+    const isMessageValid = validateMessage();
+
+    if (isNameValid && isEmailValid && isMessageValid) {
+        // Aqui você pode adicionar o código para enviar o formulário
+        alert('Formulário enviado com sucesso!');
+        form.reset();
+    }
+}); 
