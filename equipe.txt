@@ -1,37 +1,10 @@
 Equipe de Desenvolvimento
 
-1. João Silva
-   - Cargo: Desenvolvedor Front-end
-   - Especialidades: HTML, CSS, JavaScript
-   - Email: joao.silva@empresa.com
+1. Gabriel Alexandre Fukushima Sakura
+   - RM: 99522
 
-2. Maria Santos
-   - Cargo: Desenvolvedora Back-end
-   - Especialidades: Python, Django, SQL
-   - Email: maria.santos@empresa.com
+2. Gabriel Oliveira Amaral
+   - RM: 563872
 
-3. Pedro Oliveira
-   - Cargo: Designer UI/UX
-   - Especialidades: Figma, Adobe XD, Photoshop
-   - Email: pedro.oliveira@empresa.com
-
-4. Ana Costa
-   - Cargo: Gerente de Projeto
-   - Especialidades: Gestão de Projetos, Scrum
-   - Email: ana.costa@empresa.com
-
-5. Lucas Mendes
-   - Cargo: Desenvolvedor Full-stack
-   - Especialidades: React, Node.js, MongoDB
-   - Email: lucas.mendes@empresa.com
-
-Projetos em Andamento:
-- Redesign do site institucional
-- Implementação de sistema de e-commerce
-- Desenvolvimento de aplicativo mobile
-
-Próximos Objetivos:
-1. Finalizar a migração para React
-2. Implementar testes automatizados
-3. Otimizar performance do site
-4. Expandir equipe de desenvolvimento 
+3. Rafael Tavares Santos
+   -RM: 563487
