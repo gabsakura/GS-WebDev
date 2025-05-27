@@ -38,13 +38,27 @@ function showSlides(n) {
         dots[i].className = dots[i].className.replace(" active", "");
     }
     
-    slides[slideIndex-1].style.display = "block";
-    dots[slideIndex-1].className += " active";
+    if (slides[slideIndex-1]) {
+        slides[slideIndex-1].style.display = "block";
+        if (dots[slideIndex-1]) {
+            dots[slideIndex-1].className += " active";
+        }
+    }
 }
 
-setInterval(() => {
-    changeSlide(1);
-}, 5000);
+// Adiciona tratamento de erro para imagens
+document.querySelectorAll('.slide img').forEach(img => {
+    img.onerror = function() {
+        this.src = 'data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22800%22%20height%3D%22400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20400%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_15ba800aa1d%20text%20%7B%20fill%3A%23555%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A40pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_15ba800aa1d%22%3E%3Crect%20width%3D%22800%22%20height%3D%22400%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22285.921875%22%20y%3D%22217.7%22%3EImagem%20não%20encontrada%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E';
+    };
+});
+
+// Inicia o slideshow apenas se houver slides
+if (document.getElementsByClassName("slide").length > 0) {
+    setInterval(() => {
+        changeSlide(1);
+    }, 5000);
+}
 
 // Quiz code
 const questions = [
@@ -108,6 +122,15 @@ function startQuiz() {
     currentQuestion = 0;
     userAnswers = new Array(questions.length).fill(null);
     score = 0;
+    
+    const quizContent = document.getElementById('quiz-content');
+    const resultsEl = document.getElementById('results');
+    
+    if (quizContent && resultsEl) {
+        quizContent.style.display = 'block';
+        resultsEl.style.display = 'none';
+    }
+    
     showQuestion();
     updateProgress();
     updateNavigationButtons();
@@ -116,8 +139,10 @@ function startQuiz() {
 function showQuestion() {
     const questionEl = document.getElementById("question");
     const choicesEl = document.getElementById("choices");
+    
+    if (!questionEl || !choicesEl) return;
+    
     const currentQ = questions[currentQuestion];
-
     questionEl.textContent = currentQ.question;
     choicesEl.innerHTML = "";
 
@@ -134,7 +159,7 @@ function showQuestion() {
 
 function selectChoice(choiceIndex) {
     userAnswers[currentQuestion] = choiceIndex;
-    showQuestion(); // Atualiza a visualização para mostrar a seleção
+    showQuestion();
     updateNavigationButtons();
 }
 
@@ -157,24 +182,33 @@ function nextQuestion() {
 }
 
 function updateProgress() {
-    document.getElementById("currentQuestionNumber").textContent = currentQuestion + 1;
-    document.getElementById("totalQuestions").textContent = questions.length;
+    const currentNumber = document.getElementById("currentQuestionNumber");
+    const totalNumber = document.getElementById("totalQuestions");
+    
+    if (currentNumber && totalNumber) {
+        currentNumber.textContent = currentQuestion + 1;
+        totalNumber.textContent = questions.length;
+    }
 }
 
 function updateNavigationButtons() {
     const prevButton = document.getElementById("prevQuestion");
     const nextButton = document.getElementById("nextQuestion");
     const submitButton = document.getElementById("submit");
-
-    prevButton.disabled = currentQuestion === 0;
-    nextButton.disabled = currentQuestion === questions.length - 1;
     
-    // Verifica se todas as questões foram respondidas
-    const allAnswered = userAnswers.every(answer => answer !== null);
-    submitButton.disabled = !allAnswered;
+    if (prevButton && nextButton && submitButton) {
+        prevButton.disabled = currentQuestion === 0;
+        nextButton.disabled = currentQuestion === questions.length - 1;
+        submitButton.disabled = userAnswers.includes(null);
+    }
 }
 
 function submitQuiz() {
+    if (userAnswers.includes(null)) {
+        alert("Por favor, responda todas as questões antes de finalizar!");
+        return;
+    }
+
     score = 0;
     userAnswers.forEach((answer, index) => {
         if (answer === questions[index].correct) {
@@ -182,23 +216,27 @@ function submitQuiz() {
         }
     });
 
-    const quizEl = document.getElementById("quiz");
-    const resultsEl = document.getElementById("results");
-    const scoreEl = document.getElementById("score");
-
-    quizEl.classList.add("hide");
-    resultsEl.classList.remove("hide");
-    scoreEl.textContent = `Você acertou ${score} de ${questions.length} questões!`;
+    const quizContent = document.getElementById('quiz-content');
+    const resultsEl = document.getElementById('results');
+    const scoreEl = document.getElementById('score');
+    
+    if (quizContent && resultsEl && scoreEl) {
+        quizContent.style.display = 'none';
+        resultsEl.style.display = 'block';
+        scoreEl.textContent = `Respondido obrigado -> ${score} respostas Corretas :) `;
+    }
 }
 
-document.getElementById("restart").addEventListener("click", () => {
-    document.getElementById("quiz").classList.remove("hide");
-    document.getElementById("results").classList.add("hide");
+// Inicializa o quiz quando a página carregar
+document.addEventListener('DOMContentLoaded', () => {
     startQuiz();
+    
+    // Adiciona o evento de reiniciar
+    const restartButton = document.getElementById('restart');
+    if (restartButton) {
+        restartButton.addEventListener('click', startQuiz);
+    }
 });
-
-// Start the quiz when the page loads
-startQuiz();
 
 // Background Color Change
 const themeIcons = document.querySelectorAll('.theme-icon');
