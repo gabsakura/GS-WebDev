@@ -8,7 +8,18 @@
 </head>
 <body>
     <header>
-        <h1>Bem-vindo ao Meu Site</h1>
+        <nav class="navbar">
+            <div class="logo">Meu Site</div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#quiz" class="nav-link">Quiz</a></li>
+            </ul>
+        </nav>
         <div class="theme-icons">
             <button class="theme-icon" data-color="#ffffff" style="background-color: #ffffff;"></button>
             <button class="theme-icon" data-color="#f0f0f0" style="background-color: #f0f0f0;"></button>
@@ -17,7 +28,7 @@
     </header>
 
     <main>
-        <section class="slideshow-container">
+        <section id="home" class="slideshow-container">
             <div class="slideshow">
                 <div class="slide fade">
                     <img src="images/slide1.jpg" alt="Slide 1">
@@ -39,12 +50,17 @@
             </div>
         </section>
 
-        <section class="quiz-container">
+        <section id="quiz" class="quiz-container">
             <h2>Quiz Interativo</h2>
             <div id="quiz">
                 <div id="question"></div>
                 <div id="choices"></div>
-                <button id="submit">Enviar Resposta</button>
+                <div class="quiz-navigation">
+                    <button id="prevQuestion" onclick="previousQuestion()">Questão Anterior</button>
+                    <button id="nextQuestion" onclick="nextQuestion()">Próxima Questão</button>
+                </div>
+                <div id="progress">Questão <span id="currentQuestionNumber">1</span> de <span id="totalQuestions">10</span></div>
+                <button id="submit" onclick="submitQuiz()">Enviar Respostas</button>
             </div>
             <div id="results" class="hide">
                 <h3>Resultado</h3>

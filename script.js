@@ -1,3 +1,18 @@
+// Hamburger Menu
+const hamburger = document.querySelector(".hamburger");
+const navMenu = document.querySelector(".nav-menu");
+
+hamburger.addEventListener("click", () => {
+    hamburger.classList.toggle("active");
+    navMenu.classList.toggle("active");
+});
+
+document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", () => {
+    hamburger.classList.remove("active");
+    navMenu.classList.remove("active");
+}));
+
+// Slideshow code
 let slideIndex = 1;
 showSlides(slideIndex);
 
@@ -31,6 +46,7 @@ setInterval(() => {
     changeSlide(1);
 }, 5000);
 
+// Quiz code
 const questions = [
     {
         question: "Qual é a capital do Brasil?",
@@ -85,12 +101,16 @@ const questions = [
 ];
 
 let currentQuestion = 0;
+let userAnswers = new Array(questions.length).fill(null);
 let score = 0;
 
 function startQuiz() {
     currentQuestion = 0;
+    userAnswers = new Array(questions.length).fill(null);
     score = 0;
     showQuestion();
+    updateProgress();
+    updateNavigationButtons();
 }
 
 function showQuestion() {
@@ -105,25 +125,63 @@ function showQuestion() {
         const button = document.createElement("button");
         button.textContent = choice;
         button.onclick = () => selectChoice(index);
+        if (userAnswers[currentQuestion] === index) {
+            button.classList.add("selected");
+        }
         choicesEl.appendChild(button);
     });
 }
 
 function selectChoice(choiceIndex) {
-    const currentQ = questions[currentQuestion];
-    if (choiceIndex === currentQ.correct) {
-        score++;
-    }
+    userAnswers[currentQuestion] = choiceIndex;
+    showQuestion(); // Atualiza a visualização para mostrar a seleção
+    updateNavigationButtons();
+}
 
-    currentQuestion++;
-    if (currentQuestion < questions.length) {
+function previousQuestion() {
+    if (currentQuestion > 0) {
+        currentQuestion--;
         showQuestion();
-    } else {
-        showResults();
+        updateProgress();
+        updateNavigationButtons();
     }
 }
 
-function showResults() {
+function nextQuestion() {
+    if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        showQuestion();
+        updateProgress();
+        updateNavigationButtons();
+    }
+}
+
+function updateProgress() {
+    document.getElementById("currentQuestionNumber").textContent = currentQuestion + 1;
+    document.getElementById("totalQuestions").textContent = questions.length;
+}
+
+function updateNavigationButtons() {
+    const prevButton = document.getElementById("prevQuestion");
+    const nextButton = document.getElementById("nextQuestion");
+    const submitButton = document.getElementById("submit");
+
+    prevButton.disabled = currentQuestion === 0;
+    nextButton.disabled = currentQuestion === questions.length - 1;
+    
+    // Verifica se todas as questões foram respondidas
+    const allAnswered = userAnswers.every(answer => answer !== null);
+    submitButton.disabled = !allAnswered;
+}
+
+function submitQuiz() {
+    score = 0;
+    userAnswers.forEach((answer, index) => {
+        if (answer === questions[index].correct) {
+            score++;
+        }
+    });
+
     const quizEl = document.getElementById("quiz");
     const resultsEl = document.getElementById("results");
     const scoreEl = document.getElementById("score");
