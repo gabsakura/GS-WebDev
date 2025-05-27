@@ -46,6 +46,41 @@ const questions = [
         question: "Quem pintou a Mona Lisa?",
         choices: ["Van Gogh", "Leonardo da Vinci", "Picasso", "Michelangelo"],
         correct: 1
+    },
+    {
+        question: "Qual é o maior oceano do mundo?",
+        choices: ["Atlântico", "Índico", "Pacífico", "Ártico"],
+        correct: 2
+    },
+    {
+        question: "Em que ano começou a Primeira Guerra Mundial?",
+        choices: ["1914", "1918", "1939", "1945"],
+        correct: 0
+    },
+    {
+        question: "Qual é o elemento químico com símbolo 'O'?",
+        choices: ["Ouro", "Oxigênio", "Ósmio", "Osmio"],
+        correct: 1
+    },
+    {
+        question: "Qual é o maior deserto do mundo?",
+        choices: ["Saara", "Gobi", "Antártico", "Atacama"],
+        correct: 2
+    },
+    {
+        question: "Quem escreveu 'Dom Casmurro'?",
+        choices: ["Machado de Assis", "José de Alencar", "Eça de Queirós", "Lima Barreto"],
+        correct: 0
+    },
+    {
+        question: "Qual é o país com maior população do mundo?",
+        choices: ["Estados Unidos", "Índia", "China", "Indonésia"],
+        correct: 2
+    },
+    {
+        question: "Qual é o maior osso do corpo humano?",
+        choices: ["Fêmur", "Tíbia", "Úmero", "Rádio"],
+        correct: 0
     }
 ];
 
