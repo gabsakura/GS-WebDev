@@ -63,54 +63,54 @@ if (document.getElementsByClassName("slide").length > 0) {
 // Quiz code
 const questions = [
     {
-        question: "Qual é a capital do Brasil?",
-        choices: ["São Paulo", "Rio de Janeiro", "Brasília", "Salvador"],
-        correct: 2
-    },
-    {
-        question: "Qual é o maior planeta do sistema solar?",
-        choices: ["Terra", "Marte", "Júpiter", "Saturno"],
-        correct: 2
-    },
-    {
-        question: "Quem pintou a Mona Lisa?",
-        choices: ["Van Gogh", "Leonardo da Vinci", "Picasso", "Michelangelo"],
+        question: "Qual desastre natural é causado pelo movimento das placas tectônicas?",
+        choices: ["Tsunami", "Terremoto", "Tornado", "Inundação"],
         correct: 1
     },
     {
-        question: "Qual é o maior oceano do mundo?",
-        choices: ["Atlântico", "Índico", "Pacífico", "Ártico"],
-        correct: 2
-    },
-    {
-        question: "Em que ano começou a Primeira Guerra Mundial?",
-        choices: ["1914", "1918", "1939", "1945"],
-        correct: 0
-    },
-    {
-        question: "Qual é o elemento químico com símbolo 'O'?",
-        choices: ["Ouro", "Oxigênio", "Ósmio", "Osmio"],
+        question: "Qual é o nome dado à grande onda causada por um terremoto submarino?",
+        choices: ["Furacão", "Tsunami", "Maremoto", "Tromba d'água"],
         correct: 1
     },
     {
-        question: "Qual é o maior deserto do mundo?",
-        choices: ["Saara", "Gobi", "Antártico", "Atacama"],
+        question: "O que mede a escala Richter?",
+        choices: ["Força dos ventos", "Volume de chuvas", "Magnitude de terremotos", "Altura de tsunamis"],
         correct: 2
     },
     {
-        question: "Quem escreveu 'Dom Casmurro'?",
-        choices: ["Machado de Assis", "José de Alencar", "Eça de Queirós", "Lima Barreto"],
+        question: "Qual região do mundo é mais afetada por terremotos?",
+        choices: ["Anel de Fogo do Pacífico", "Europa Central", "Deserto do Saara", "África Subsaariana"],
         correct: 0
     },
     {
-        question: "Qual é o país com maior população do mundo?",
-        choices: ["Estados Unidos", "Índia", "China", "Indonésia"],
+        question: "Que desastre natural é caracterizado por ventos em espiral que tocam o solo?",
+        choices: ["Tsunami", "Terremoto", "Tornado", "Ciclone"],
         correct: 2
     },
     {
-        question: "Qual é o maior osso do corpo humano?",
-        choices: ["Fêmur", "Tíbia", "Úmero", "Rádio"],
-        correct: 0
+        question: "Qual desastre natural geralmente ocorre após chuvas intensas em áreas inclinadas?",
+        choices: ["Nevasca", "Deslizamento de terra", "Seca", "Furacão"],
+        correct: 1
+    },
+    {
+        question: "Como é chamado o centro de um furacão, onde os ventos são calmos?",
+        choices: ["Núcleo", "Vórtice", "Olho", "Centro"],
+        correct: 2
+    },
+    {
+        question: "Qual fenômeno climático é responsável por secas e chuvas intensas em diferentes partes do mundo?",
+        choices: ["La Niña", "El Niño", "Tufão", "Monção"],
+        correct: 1
+    },
+    {
+        question: "Qual instrumento é usado para medir a quantidade de chuva?",
+        choices: ["Anemômetro", "Pluviômetro", "Barômetro", "Sismógrafo"],
+        correct: 1
+    },
+    {
+        question: "Qual é a principal causa de inundações urbanas?",
+        choices: ["Furacões", "Maremotos", "Impermeabilização do solo", "Erupções vulcânicas"],
+        correct: 2
     }
 ];
 
