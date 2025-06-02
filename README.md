@@ -27,7 +27,7 @@ Este projeto implementa um site interativo com slideshow, quiz e recursos de per
 - Persistência da preferência do usuário
 - Transições suaves entre cores
 
-## 📚 Recursos de Aprendizado
+## 📚 Recursos de Aprendizado eu peguei a maioria quando perguntei materias de pesquisa sobre os assuntos no chatgpt -> fica a  dica 
 
 ### JavaScript
 - [MDN Web Docs - JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
